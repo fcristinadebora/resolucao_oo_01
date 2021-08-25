@@ -15,6 +15,7 @@ class Main:
         print('=========================')
         print('Selecione uma opção:')
         print('1. Cadastrar contato')
+        print('2. Listar contatos')
         print('0. Sair do programa')
 
     def ler_opcao_menu(self):
@@ -27,6 +28,8 @@ class Main:
 
         if (opcao == '1'):
             self.cadastrar_contato()
+        elif (opcao == '2'):
+            self.listar_contatos()
 
 
     def cadastrar_contato(self):
@@ -44,4 +47,10 @@ class Main:
 
         self.agenda.add_contato(contato)
         print('Contato adicionado com sucesso.')
+
+    def listar_contatos(self):
+        print('Lista de contatos:')
+        contatos_da_agenda = self.agenda.get_contatos()
+        for contato in contatos_da_agenda:
+            print('Contato: ' + contato.get_nome() + ' / Tel: ' + contato.get_telefone())
 
