@@ -21,6 +21,8 @@ class Main:
         print('4. Cadastrar tarefa')
         print('5. Listar tarefas')
         print('6. Excluir tarefa')
+        print('7. Concluir tarefas')
+        print('8. Definir tarefas como pendentes')
         print('0. Sair do programa')
 
     def ler_opcao_menu(self):
@@ -43,6 +45,10 @@ class Main:
             self.listar_tarefas()
         elif (opcao == '6'):
             self.excluir_tarefa()
+        elif (opcao == '7'):
+            self.concluir_tarefas()
+        elif (opcao == '8'):
+            self.definir_tarefas_pendentes()
 
 
     def cadastrar_contato(self):
@@ -117,3 +123,39 @@ class Main:
 
         self.agenda.remover_tarefa(tarefa_selecionada)
         print('Tarefa excluída com sucesso')
+
+    def concluir_tarefas(self):
+        self.listar_tarefas()
+        indices_para_excluir = input('Digite o número das tarefas, separados por virgula ')
+        vetor_indices_para_excluir = indices_para_excluir.split(',')
+
+        for indice_concluir in vetor_indices_para_excluir:
+            indice_concluir = indice_concluir.strip()
+
+            try:
+                tarefa_selecionada = self.agenda.get_tarefa(int(indice_concluir))
+            except:
+                print('Contato inválido')
+                return
+
+            tarefa_selecionada.set_status_concluida()
+
+        print('Tarefas concluidas com sucesso')
+
+    def definir_tarefas_pendentes(self):
+        self.listar_tarefas()
+        indices_definir = input('Digite o número das tarefas, separados por virgula ')
+        vetor_indices_para_excluir = indices_definir.split(',')
+
+        for indice_definir in vetor_indices_para_excluir:
+            indice_definir = indice_definir.strip()
+
+            try:
+                tarefa_selecionada = self.agenda.get_tarefa(int(indice_definir))
+            except:
+                print('Contato inválido')
+                return
+
+            tarefa_selecionada.set_status_pendente()
+
+        print('Tarefas marcadas como pendentes com sucesso')
