@@ -16,6 +16,7 @@ class Main:
         print('Selecione uma opção:')
         print('1. Cadastrar contato')
         print('2. Listar contatos')
+        print('3. Excluir contato')
         print('0. Sair do programa')
 
     def ler_opcao_menu(self):
@@ -30,6 +31,8 @@ class Main:
             self.cadastrar_contato()
         elif (opcao == '2'):
             self.listar_contatos()
+        elif (opcao == '3'):
+            self.excluir_contato()
 
 
     def cadastrar_contato(self):
@@ -52,5 +55,19 @@ class Main:
         print('Lista de contatos:')
         contatos_da_agenda = self.agenda.get_contatos()
         for indice, contato in enumerate(contatos_da_agenda):
-            print(str(indice) + '. Contato: ' + contato.get_nome() + ' / Tel: ' + contato.get_telefone())
+            print('Numero: ' + str(indice) + ' - Contato: ' + contato.get_nome() + ' / Tel: ' + contato.get_telefone())
+
+    def excluir_contato(self):
+        self.listar_contatos()
+        indice_para_excluir = input('Digite o número do contato ')
+
+        try:
+            contato_selecionado = self.agenda.get_contato(int(indice_para_excluir))
+        except:
+            print('Contato inválido')
+            return
+
+        self.agenda.remover_contato(contato_selecionado)
+        print('Contato excluído com sucesso')
+
 
