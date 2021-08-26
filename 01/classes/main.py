@@ -51,6 +51,6 @@ class Main:
     def listar_contatos(self):
         print('Lista de contatos:')
         contatos_da_agenda = self.agenda.get_contatos()
-        for contato in contatos_da_agenda:
-            print('Contato: ' + contato.get_nome() + ' / Tel: ' + contato.get_telefone())
+        for indice, contato in enumerate(contatos_da_agenda):
+            print(str(indice) + '. Contato: ' + contato.get_nome() + ' / Tel: ' + contato.get_telefone())
 
